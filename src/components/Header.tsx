@@ -7,9 +7,14 @@ import { FaWhatsapp } from "react-icons/fa";
 import { BiCategory } from "react-icons/bi";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { IoLocationOutline } from "react-icons/io5";
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 
 const Header = () => {
+    const cartItems = useSelector((state: RootState)=> state.carts || [])
+    const notifyCart = cartItems.carts.length
   return (
     <div>
         <div className="bg-[#F8F8FB]">
@@ -34,7 +39,9 @@ const Header = () => {
         <div className="max-w-[1500px] px-4 mx-auto">
             <div className="flex justify-between items-center h-[70px]">
                 <div className="w-[200px]">
-                    <img src={logo} className="object-contain h-[40px] max-[730px]:h-[30px]"/>
+                    <NavLink to={"/"}>
+                        <img src={logo} className="object-contain h-[40px] max-[730px]:h-[30px]"/>
+                    </NavLink>
                 </div>
                 <div className="w-full flex items-center justify-center max-[730px]:hidden">
                     <input type="text" placeholder="Search Products..." className="w-[70%] border border-[#b8b8b8b6] rounded-[10px] focus:outline-green-100 duration-300 py-3 px-4"/>
@@ -54,13 +61,15 @@ const Header = () => {
                             <h1 className="font-semibold">3-ITEMS</h1>
                         </div>
                     </div>
+                    <NavLink to={"carts"}>
                     <div className="flex items-center w-[90px] gap-2">
                         <div className="flex items-center justify-center text-3xl max-[730px]:text-[24px]"><PiHandbagSimpleLight /></div>
                         <div className="flex flex-col text-[12px] max-[730px]:text-[9px]">
-                            <h2 className="text-[#0000008f]">Cart</h2>
-                            <h1 className="font-semibold">3-ITEMS</h1>
+                                <h2 className="text-[#0000008f]">Cart</h2>
+                            <h1 className="font-semibold">{notifyCart}-ITEMS</h1>
                         </div>
                     </div>
+                    </NavLink>
                 </div>
             </div>
         </div>

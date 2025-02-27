@@ -4,8 +4,10 @@ import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 import Rating from '@mui/material/Rating';
 import { productTypes } from "../types"; 
+import { useNavigate } from "react-router-dom";
 
 const Catalog: React.FC<{limit: number, skip: number}> = ({limit, skip}) => {
+    const navigate = useNavigate()
     const {data} = useQuery({
         queryKey: ['products', limit, skip],
         queryFn: ()=>{
@@ -21,7 +23,7 @@ const Catalog: React.FC<{limit: number, skip: number}> = ({limit, skip}) => {
                 {data?.products?.map((item: productTypes)=>(
                     <div key={item.id} className="flex flex-col border border-[#EEEEEE] rounded-[5px]">
                         <div className="">
-                            <img src={item.thumbnail}/>
+                            <img src={item.thumbnail} className="cursor-pointer hover:scale-110 duration-300" onClick={()=> navigate(`product/${item.id}`)}/>
                         </div>
                         <div className="border border-[#EEEEEE] p-4">
                             <p className="text-[#999999] text-[13px]">{item.category}</p>
