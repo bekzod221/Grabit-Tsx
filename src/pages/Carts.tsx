@@ -112,6 +112,7 @@ const Carts = () => {
                             <button
                               className="w-6 h-6 flex items-center justify-center rounded cursor-pointer"
                               onClick={()=> dispatch(decQuantity(item.id))}
+                              disabled={item.quantity == 1}
                             >
                               -
                             </button>
