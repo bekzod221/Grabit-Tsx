@@ -3,6 +3,7 @@ import Home from "../pages/Home"
 import Layout from "../pages/layout/Layout"
 import Detail from "../pages/Detail"
 import Carts from "../pages/Carts"
+import Collections from "../pages/Collections"
 
 const Routers = () => {
   return (
@@ -24,6 +25,10 @@ const Routers = () => {
                         {
                             path: "carts",
                             element: <Carts/>
+                        },
+                        {
+                            path: "collections",
+                            element: <Collections/>
                         },
                         {
                             path: "*",

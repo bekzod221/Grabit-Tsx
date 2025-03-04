@@ -1,3 +1,4 @@
+import * as React from 'react';
 import logo from "../assets/logo.png.png"
 import { CiHeart } from "react-icons/ci";
 import { IoPersonOutline } from "react-icons/io5";
@@ -10,11 +11,21 @@ import { IoLocationOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
-
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 const Header = () => {
     const cartItems = useSelector((state: RootState)=> state.carts || [])
     const notifyCart = cartItems.carts.length
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
   return (
     <div>
         <div className="bg-[#F8F8FB]">
@@ -82,7 +93,26 @@ const Header = () => {
                     <div>
                         <ul className="flex items-center gap-4">
                             <li className="flex items-center text-[#4B5966] cursor-pointer">Home <span className="text-[20px]"><MdKeyboardArrowDown/></span></li>
-                            <li className="flex items-center text-[#4B5966] cursor-pointer">Categories <span className="text-[20px]"><MdKeyboardArrowDown/></span></li>
+                            <Button
+                                id="basic-button"
+                                aria-controls={open ? 'basic-menu' : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={open ? 'true' : undefined}
+                                onClick={handleClick}
+                                sx={{color: "#4B5966", textTransform: "capitalize"}}
+                            >
+                                Categories <MdKeyboardArrowDown/>
+                            </Button>
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorEl}
+                                open={open}
+                                onClose={handleClose}
+                            >
+                                <NavLink to={"collections"}><MenuItem onClick={handleClose}>Collections</MenuItem></NavLink>
+                                <MenuItem onClick={handleClose}>My account</MenuItem>
+                                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                            </Menu>
                             <li className="flex items-center text-[#4B5966] cursor-pointer">Products <span className="text-[20px]"><MdKeyboardArrowDown/></span></li>
                             <li className="flex items-center text-[#4B5966] cursor-pointer max-[503px]:hidden">Blog <span className="text-[20px]"><MdKeyboardArrowDown/></span></li>
                             <li className="flex items-center text-[#4B5966] cursor-pointer max-[503px]:hidden">Pages <span className="text-[20px]"><MdKeyboardArrowDown/></span></li>
