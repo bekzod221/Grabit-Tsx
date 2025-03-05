@@ -77,7 +77,7 @@ const Collections = () => {
     </div>
     <div className="py-7">
         <Breadcrumb/>
-        <Catalog skip={4} limit={5}/>
+        <Catalog category="groceries" skip={4} limit={5}/>
     </div>
     <Ads/>
     <div className="py-7">
