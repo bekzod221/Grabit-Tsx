@@ -14,7 +14,7 @@ import Blog from '../components/Blog';
 const Tags = () => {
     const [selectedTag, setSelectedTag] = useState<string | null>('groceries');
 
-    const { data: categories, refetch } = useQuery({
+    const { data: categories } = useQuery({
         queryKey: [selectedTag],
         queryFn: () =>
             axios.get('https://dummyjson.com/products/category-list')

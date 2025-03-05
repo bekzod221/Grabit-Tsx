@@ -4,10 +4,9 @@ import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 import Rating from '@mui/material/Rating';
 import { productTypes } from "../types"; 
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Catalog: React.FC<{limit: number, skip: number, category: string}> = ({limit, skip, category}) => {
-    const navigate = useNavigate()
     const {data} = useQuery({
         queryKey: ['products', limit, skip, category],
         queryFn: ()=>{
