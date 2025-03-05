@@ -99,7 +99,7 @@ const Detail = () => {
                     <h1 className="text-[#4B5966] font-bold text-[26px]">Related <span className="text-[#5CAF90] font-bold text-[26px]">Products</span></h1>
                     <p className="text-[#777777] text-[14px]">Browse The Collection of Top Products</p>
                 </div>
-                <Catalog skip={4} limit={5}/>
+                <Catalog category="groceries" skip={4} limit={5}/>
             </div>
         </div>
     </div>

@@ -99,7 +99,7 @@ const Collections = () => {
             </div>
         </div>
     </div>
-        <Catalog skip={10} limit={10}/>
+        <Catalog category="groceries" skip={10} limit={10}/>
     </div>
 
     <div className="py-24">
@@ -124,7 +124,7 @@ const Collections = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>ß
     </div>
 
     <Features/>

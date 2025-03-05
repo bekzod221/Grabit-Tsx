@@ -4,14 +4,14 @@ import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 import Rating from '@mui/material/Rating';
 import { productTypes } from "../types"; 
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
-const Catalog: React.FC<{limit: number, skip: number}> = ({limit, skip}) => {
+const Catalog: React.FC<{limit: number, skip: number, category: string}> = ({limit, skip, category}) => {
     const navigate = useNavigate()
     const {data} = useQuery({
-        queryKey: ['products', limit, skip],
+        queryKey: ['products', limit, skip, category],
         queryFn: ()=>{
-            return axios.get(`https://dummyjson.com/products/category/groceries?limit=${limit}&skip=${skip}`)
+            return axios.get(`https://dummyjson.com/products/category/${category}?limit=${limit}&skip=${skip}`)
                         .then(res => res.data)
         } 
     })
@@ -23,7 +23,7 @@ const Catalog: React.FC<{limit: number, skip: number}> = ({limit, skip}) => {
                 {data?.products?.map((item: productTypes)=>(
                     <div key={item.id} className="flex flex-col border border-[#EEEEEE] rounded-[5px]">
                         <div className="">
-                            <img src={item.thumbnail} className="cursor-pointer hover:scale-110 duration-300" onClick={()=> navigate(`product/${item.id}`)}/>
+                            <NavLink to={`/product/${item.id}`}><img src={item.thumbnail} className="cursor-pointer hover:scale-110 duration-300"/></NavLink>
                         </div>
                         <div className="border border-[#EEEEEE] p-4">
                             <p className="text-[#999999] text-[13px]">{item.category}</p>

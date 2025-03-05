@@ -4,6 +4,7 @@ import Layout from "../pages/layout/Layout"
 import Detail from "../pages/Detail"
 import Carts from "../pages/Carts"
 import Collections from "../pages/Collections"
+import Tags from "../pages/Tags"
 
 const Routers = () => {
   return (
@@ -29,6 +30,10 @@ const Routers = () => {
                         {
                             path: "collections",
                             element: <Collections/>
+                        },
+                        {
+                            path: "categories",
+                            element: <Tags/>
                         },
                         {
                             path: "*",

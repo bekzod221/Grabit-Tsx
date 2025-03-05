@@ -21,7 +21,7 @@ const Products = () => {
             </div>
         </div>
     </div>
-    <Catalog limit={10} skip={4}/>
+    <Catalog category="groceries" limit={10} skip={10}/>
     </>
   )
 }

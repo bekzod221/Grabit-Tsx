@@ -110,8 +110,7 @@ const Header = () => {
                                 onClose={handleClose}
                             >
                                 <NavLink to={"collections"}><MenuItem onClick={handleClose}>Collections</MenuItem></NavLink>
-                                <MenuItem onClick={handleClose}>My account</MenuItem>
-                                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                                <NavLink to={"categories"}><MenuItem onClick={handleClose}>Category</MenuItem></NavLink>
                             </Menu>
                             <li className="flex items-center text-[#4B5966] cursor-pointer">Products <span className="text-[20px]"><MdKeyboardArrowDown/></span></li>
                             <li className="flex items-center text-[#4B5966] cursor-pointer max-[503px]:hidden">Blog <span className="text-[20px]"><MdKeyboardArrowDown/></span></li>

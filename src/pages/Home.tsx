@@ -15,7 +15,7 @@ const Home = () => {
      <Banner/>
      <Category/>
      <Breadcrumb/>
-     <Catalog limit={5} skip={10}/>
+     <Catalog category="groceries" limit={5} skip={10}/>
      <Ads/>
      <Products/>
      <BannerGrid/>
