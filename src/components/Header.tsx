@@ -8,24 +8,36 @@ import { FaWhatsapp } from "react-icons/fa";
 import { BiCategory } from "react-icons/bi";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { IoLocationOutline } from "react-icons/io5";
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { logout } from '../store/authSlice';
+import { toast } from 'sonner';
 
 const Header = () => {
+    const dispatch = useDispatch()
     const cartItems = useSelector((state: RootState)=> state.carts || [])
     const notifyCart = cartItems.carts.length
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
+    const navigate = useNavigate()
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
       setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
       setAnchorEl(null);
     };
+
+    const hadnleLogout = () => {
+        if(confirm('Do you want to log out?')){
+            dispatch(logout(''))
+            navigate('login')
+            toast.info('You logged out')
+        }
+    }
   return (
     <div>
         <div className="bg-[#F8F8FB]">
@@ -57,12 +69,12 @@ const Header = () => {
                 <div className="w-full flex items-center justify-center max-[730px]:hidden">
                     <input type="text" placeholder="Search Products..." className="w-[70%] border border-[#b8b8b8b6] rounded-[10px] focus:outline-green-100 duration-300 py-3 px-4"/>
                 </div>
-                <div className="flex  items-center">
-                    <div className="flex items-center w-[90px] gap-2 max-[543px]:hidden">
+                <div className="flex gap-2 items-center">
+                    <div className="flex items-center w-[90px] gap-2">
                         <div className="flex items-center justify-center text-3xl max-[730px]:text-[24px]"><IoPersonOutline/></div>
                         <div className="flex flex-col text-[12px] max-[730px]:text-[9px]">
                             <h2 className="text-[#0000008f]">Account</h2>
-                            <h1 className="font-semibold">LOGIN</h1>
+                            <h1 className="font-semibold cursor-pointer" onClick={hadnleLogout}>LOGOUT</h1>
                         </div>
                     </div>
                     <div className="flex items-center w-[90px] gap-2 max-[543px]:hidden">

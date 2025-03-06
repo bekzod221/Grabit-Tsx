@@ -9,11 +9,13 @@ import {
 const queryClient = new QueryClient()
 import {Provider} from "react-redux"
 import {store} from "./store/store.ts"
+import { Toaster } from 'sonner'
 
 createRoot(document.getElementById('root')!).render(
   <QueryClientProvider client={queryClient}>
     <BrowserRouter>
     <Provider store={store}>
+    <Toaster position='bottom-center' richColors/>
       <App />
     </Provider>
     </BrowserRouter>
